@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html layout:decorate = "template"
+xmlns:th="http://www/thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | DataTables</title>
+
+
+</head>
+<body class="hold-transition sidebar-mini">
+
+ 
+  <div layout:fragment="content1">
+  <!-- Content Wrapper. Contains page content -->
+  
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>User List</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active"><a href="#">Users</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+          
+            
+
+            <div class="card">
+              <div class="card-header">
+                <a href="/user/new"><button class="btn btn-sm btn-success">Add New User</button></a>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+            <tr>
+               
+                <th>ID</th>
+                <th>PHOTO</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                
+                <th>GENDER</th>
+                <th>ROLE</th>
+                <th>DEPARTMENT</th>
+                <th>SKILL</th>
+                <th>ENTRYDATE</th>
+                <th>LOGOUT</th>
+                
+                
+                
+                <th>ACTION</th>
+           
+            </tr>
+        </thead>
+          <tbody>
+                <tr th:each="user : ${list}">
+                    <td th:text="${user.id}"></td>
+                    <td> <img th:src="${user.PhotosImagePath}" 
+                    			width=80px height=80px/></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    
+                    <td th:text="${user.gender}"></td>
+                    <td th:text="${user.role.name}"></td>
+                    <td th:text="${user.department.name}"></td>
+                    <td><span  th:each="s :${user.skills}" th:text="${s.name}+','"></span></td>
+                    
+                    <td th:text="${user.entry_date}"></td>
+                    <td th:text="${user.logout}"></td>
+                    
+           
+                    
+                    <td style="width:160px"><a th:href="@{/user/edit/{id}(id=${user.id})}"><button class="btn btn-sm btn-success"> Update </button></a>
+                    <a th:href="@{/user/delete/{id}(id=${user.id})}" onclick="return confirm('Do you want to Delete?')"><button class="btn btn-sm btn-danger">Delete </button></a></td>
+              
+               </tr>
+            </tbody>
+                  <tfoot>
+                  <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                
+                <th>GENDER</th>
+                <th>ROLE</th>
+                <th>DEPARTMENT</th>
+                <th>SKILL</th>
+                <th>ENTRYDATE</th>
+                <th>LOGOUT</th>
+                <th>PHOTO</th>
+                
+                <th>ACTION</th>
+           
+                  </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+<!-- ./wrapper -->
+<!-- jQuery -->
+
+<!-- Page specific script -->
+
+</body>
+</html>

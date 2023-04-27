@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html layout:decorate = "template" 
+xmlns:th="http://www/thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AdminLTE 3 | Validation Form</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  
+</head>
+<body class="hold-transition sidebar-mini">
+<div layout:fragment="content1">
+
+ 
+  
+
+  <!-- Main Sidebar Container -->
+  
+  <!-- Content Wrapper. Contains page content -->
+ 
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Departments</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/department/list">Home</a></li>
+              <li class="breadcrumb-item active"><a href="#">Departments</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- jquery validation -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title"> Department Entry </h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+            <div class="container my-3">
+            <form action="#" th:action="@{/department/insert}"  th:object="${department}" method="Post">
+        
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" th:field="*{name}" class="form-control" id="name"  placeholder="Enter Department Name">
+        </div>
+       
+               
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea th:field="*{description}" class="form-control" id="description"  placeholder="Enter description"></textarea>
+        </div>
+        
+        <button type="submit" name= "submit" class="btn btn-primary">Submit</button>
+      </form>
+         </div>   
+            </div>
+            <!-- /.card -->
+            
+          <!--/.col (left) -->
+          <!-- right column -->
+          <div class="col-md-6">
+
+          </div>
+          <!--/.col (right) -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+
+<!-- Page specific script -->
+<script>
+$(function () {
+  $.validator.setDefaults({
+    submitHandler: function () {
+      alert( "Form successful submitted!" );
+    }
+  });
+  $('#quickForm').validate({
+    rules: {
+      email: {
+        required: true,
+        email: true,
+      },
+      password: {
+        required: true,
+        minlength: 5
+      },
+      terms: {
+        required: true
+      },
+    },
+    messages: {
+      email: {
+        required: "Please enter a email address",
+        email: "Please enter a valid email address"
+      },
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 5 characters long"
+      },
+      terms: "Please accept our terms"
+    },
+    errorElement: 'span',
+    errorPlacement: function (error, element) {
+      error.addClass('invalid-feedback');
+      element.closest('.form-group').append(error);
+    },
+    highlight: function (element, errorClass, validClass) {
+      $(element).addClass('is-invalid');
+    },
+    unhighlight: function (element, errorClass, validClass) {
+      $(element).removeClass('is-invalid');
+    }
+  });
+});
+</script>
+</body>
+</html>
